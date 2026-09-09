@@ -1,3 +1,4 @@
+const SUPABASE_KEY = 'sb_publishable_q6vkNsHyMqU0uXfDSisV4g_6v_iGmWG';
 document.getElementById('year').textContent = new Date().getFullYear();
 
 document.getElementById('quickQuote').addEventListener('submit', function(e) {
