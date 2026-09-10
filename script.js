@@ -1,8 +1,9 @@
 const SUPABASE_URL = 'https://fjvrwbqoxmcdkvcciwal.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_q6vkNsHyMqU0uXfDSisV4g_6v_iGmWG';
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 document.getElementById('year').textContent = new Date().getFullYear();
 
-document.getElementById('quickQuote').addEventListener('submit', function(e) {
+document.getElementById('quickQuote').addEventListener('submit',  async function(e) {
   e.preventDefault();
   const d = new FormData(this);
   const subject = encodeURIComponent('NEW MOVING QUOTE REQUEST - THE BEST MOVERS');
@@ -35,5 +36,6 @@ ${d.get('details') || 'None'}
 
 Please contact me with pricing and availability.`
   );
+  const { error } = await supabase.from('quotes').insert([Object.fromEntries(d.entries())]);
   window.location.href = `mailto:thebestmoversfl@gmail.com?subject=${subject}&body=${body}`;
 });
