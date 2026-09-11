@@ -37,6 +37,7 @@ ${d.get('details') || 'None'}
 Please contact me with pricing and availability.`
   );
  const quoteData = Object.fromEntries(d.entries());
+ console.log(quoteData); 
   const { error } = await supabase.from('quotes').insert([quoteData]);
   
   if (error) { alert(error.message); return; }
