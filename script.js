@@ -36,7 +36,9 @@ ${d.get('details') || 'None'}
 
 Please contact me with pricing and availability.`
   );
-  const { error } = await supabase.from('quotes').insert([Object.fromEntries(d.entries())]);
+ const quoteData = Object.fromEntries(d.entries());
+  const { error } = await supabase.from('quotes').insert([quoteData]);
+  
   if (error) { alert(error.message); return; }
   window.location.href = `mailto:thebestmoversfl@gmail.com?subject=${subject}&body=${body}`;
 });
