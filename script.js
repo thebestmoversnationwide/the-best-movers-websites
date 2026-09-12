@@ -58,3 +58,5 @@ Details: ${d.get('details') || 'None'}`
   if (error) { alert(error.message); return; }
   window.location.href = `mailto:thebestmoversfl@gmail.com?subject=${subject}&body=${body}`;
 });
+
+console.log("THE BEST MOVERS TEST");
