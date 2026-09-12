@@ -59,4 +59,5 @@ Details: ${d.get('details') || 'None'}`
   window.location.href = `mailto:thebestmoversfl@gmail.com?subject=${subject}&body=${body}`;
 });
 
-console.log("THE BEST MOVERS TEST");
+console.log("THE BEST MOVERS TEST"); 
+
