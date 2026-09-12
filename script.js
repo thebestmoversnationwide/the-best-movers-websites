@@ -55,7 +55,7 @@ Details: ${d.get('details') || 'None'}`
   
   const { error } = await supabase.from('quotes').insert([dbQuote]);
   
-  if (error) { alert(error.message); return; }
+  if (error) { alert("SUPABASE ERROR: " + error.message); return; } else { alert("SUCCESS: Quote saved to Supabase!"); }
   window.location.href = `mailto:thebestmoversfl@gmail.com?subject=${subject}&body=${body}`;
 });
 
