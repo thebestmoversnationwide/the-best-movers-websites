@@ -36,7 +36,23 @@ ${d.get('details') || 'None'}
 
 Please contact me with pricing and availability.`
   );
- const quoteData = Object.fromEntries(d.entries());
+ const dbQuote = {
+  customer_name: d.get('name'),
+  phone: d.get('phone'),
+  email: d.get('email') || null,
+  pickup_address: d.get('from'),
+  dropoff_address: d.get('to'),
+  move_date: d.get('date') || null,
+  move_time: null,
+  home_size: d.get('homeSize'),
+  move_type: d.get('moveType'),
+  notes: `Move Distance: ${d.get('moveDistance') || ''}
+Pickup Access: ${d.get('pickupAccess') || ''}
+Destination Access: ${d.get('destinationAccess') || ''}
+Special Items: ${d.get('specialItems') || 'None'}
+Details: ${d.get('details') || 'None'}`
+};
+  const quoteData = Object.fromEntries(d.entries());
  console.log(quoteData); 
   quoteData.customer_name = d.get('name');
 quoteData.pickup_address = d.get('from');
@@ -47,7 +63,7 @@ delete quoteData.name;
 delete quoteData.from;
 delete quoteData.to;
 delete quoteData.date;
-  const { error } = await supabase.from('quotes').insert([quoteData]);
+  const { error } = await supabase.from('quotes').insert([dbQuote]);
   
   if (error) { alert(error.message); return; }
   window.location.href = `mailto:thebestmoversfl@gmail.com?subject=${subject}&body=${body}`;
