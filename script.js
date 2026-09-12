@@ -1,6 +1,6 @@
 const SUPABASE_URL = 'https://fjvrwbqoxmcdkvcciwal.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_q6vkNsHyMqU0uXfDSisV4g_6v_iGmWG';
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 document.getElementById('year').textContent = new Date().getFullYear();
 
 document.getElementById('quickQuote').addEventListener('submit',  async function(e) {
@@ -53,7 +53,7 @@ Special Items: ${d.get('specialItems') || 'None'}
 Details: ${d.get('details') || 'None'}`
 };
   
-  const { error } = await supabase.from('quotes').insert([dbQuote]);
+  const { error } = await supabaseClient.from('quotes').insert([dbQuote]);
   
   if (error) { alert("SUPABASE ERROR: " + error.message); return; } else { alert("SUCCESS: Quote saved to Supabase!"); }
   window.location.href = `mailto:thebestmoversfl@gmail.com?subject=${subject}&body=${body}`;
