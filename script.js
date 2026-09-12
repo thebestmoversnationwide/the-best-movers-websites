@@ -52,17 +52,7 @@ Destination Access: ${d.get('destinationAccess') || ''}
 Special Items: ${d.get('specialItems') || 'None'}
 Details: ${d.get('details') || 'None'}`
 };
-  const quoteData = Object.fromEntries(d.entries());
- console.log(quoteData); 
-  quoteData.customer_name = d.get('name');
-quoteData.pickup_address = d.get('from');
-quoteData.dropoff_address = d.get('to');
-quoteData.move_date = d.get('date') || null;
-
-delete quoteData.name;
-delete quoteData.from;
-delete quoteData.to;
-delete quoteData.date;
+  
   const { error } = await supabase.from('quotes').insert([dbQuote]);
   
   if (error) { alert(error.message); return; }
