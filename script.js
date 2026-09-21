@@ -54,7 +54,23 @@ Details: ${d.get('details') || 'None'}`
 };
   
   const { error } = await supabaseClient.from('quotes').insert([dbQuote]);
-  
+if (!error) {
+  const safeEmailBody = decodeURIComponent(body)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\n/g, "<br>");
+
+  const { error: emailError } = await supabaseClient.functions.invoke("resend-email", {
+    body: {
+      to: "thebestmoversfl@gmail.com",
+      subject: decodeURIComponent(subject),
+      html: safeEmailBody
+    }
+  });
+
+  if (emailError) console.error("EMAIL ERROR:", emailError);
+}  
   if (error) { alert("SUPABASE ERROR: " + error.message); return; } else { alert("Thank you! Your moving quote request has been received. THE BEST MOVERS will contact you shortly."); }
 
 });
