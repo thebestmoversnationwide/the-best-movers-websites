@@ -19,7 +19,7 @@ MOVE DETAILS
 Move Date: ${d.get('date') || 'Not selected'}
 Move Type: ${d.get('moveType')}
 Home Size: ${d.get('homeSize')}
-
+Move Distance: ${d.get('moveDistance')}
 PICKUP
 Location: ${d.get('from')}
 Access: ${d.get('pickupAccess')}
