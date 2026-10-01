@@ -68,6 +68,18 @@ if (!error) {
       html: safeEmailBody
     }
   });
+  const customerEmail = d.get('email');
+if (customerEmail) {
+  const { error: customerEmailError } = await supabaseClient.functions.invoke("resend-email", {
+    body: {
+      to: customerEmail,
+      subject: "We Received Your Moving Quote Request - THE BEST MOVERS",
+      html: `Thank you for requesting a free moving quote from THE BEST MOVERS.<br><br>We received your moving details and a member of our team will contact you shortly with pricing and availability.<br><br>THE BEST MOVERS<br>689-332-9577<br>689-335-4906`
+    }
+  });
+
+  if (customerEmailError) console.error("CUSTOMER EMAIL ERROR:", customerEmailError);
+}
 
   if (emailError) console.error("EMAIL ERROR:", emailError);
 }  
