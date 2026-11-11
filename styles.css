@@ -26,3 +26,4 @@
 .faq-list p{margin:0 0 18px;color:#64748b}
 @media(max-width:900px){.review-cards{grid-template-columns:1fr}}
 @media(max-width:900px){html{scroll-padding-top:150px}}
+@media(max-width:900px){.floating-call{display:none}}
